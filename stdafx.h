@@ -16,5 +16,6 @@
 #include "CImageRenderer.h"
 #include "CAniRenderer.h"
 
+#include "CObject.h"
 #include "CManager.h"
 #include "CGraphicsManager.h"
