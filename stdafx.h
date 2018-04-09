@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 #include <string>
 #include <iostream>
@@ -18,3 +19,23 @@
 
 #include "CManager.h"
 #include "CGraphicsManager.h"
+=======
+/*
+ * stdafx.h
+ *
+ *  Created on: 2018. 4. 5.
+ *      Author: Son
+ *      main Header file,
+ *      include all header in here
+ */
+
+#pragma once
+
+#include <iostream>
+#include <SDL2/SDL.h>
+
+#include "MY_DEFINE.h"
+
+#include "Library/CGameManager.h"
+#include "Library/CGraphicsManager.h"
+>>>>>>> 9bd18a74282252446100ab7333680c22d7351b43
