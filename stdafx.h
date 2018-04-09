@@ -1,21 +1,18 @@
+/*
+ * stdafx.h
+ *
+ *  Created on: 2018. 4. 5.
+ *      Author: Son
+ *      main Header file,
+ *      include all header in here
+ */
 
-#include <string>
+#pragma once
+
 #include <iostream>
-#include <vector>
-#include <sys/time.h>
+#include <SDL2/SDL.h>
 
-#include <GL/glew.h>
-#include <GL/gl.h>
-#include <GLFW/glfw3.h>
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
-#include <opencv2/opencv.hpp>
+#include "MY_DEFINE.h"
 
-#include "MyStruct_Enum.h"
-
-#include "CImageRenderer.h"
-#include "CAniRenderer.h"
-
-#include "CObject.h"
-#include "CManager.h"
-#include "CGraphicsManager.h"
+#include "Library/CGameManager.h"
+#include "Library/CGraphicsManager.h"

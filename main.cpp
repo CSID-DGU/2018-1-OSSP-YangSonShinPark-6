@@ -1,14 +1,11 @@
 #include "stdafx.h"
 
-int main()
+int main(int argc, char * args[])
 {
-	CGraphicsManager _cGraphics;
+	CGraphicsManager _Graphics;
+	_Graphics.Init();
+	_Graphics.Loop();
 
-	_cGraphics.InitWindow();
-
-	_cGraphics.LoopWindow();
-
-	_cGraphics.EndWIndow();
-
+	_Graphics.Exit();
 	return 0;
 }
