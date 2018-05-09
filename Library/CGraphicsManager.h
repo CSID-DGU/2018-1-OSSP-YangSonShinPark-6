@@ -10,8 +10,10 @@
 
 class CGraphicsManager {
 	SDL_Window * 	_Window;
+	SDL_GLContext _Context;
 	SDL_Surface * _ScreenSurface;
-	CGameManager _Game;
+	SDL_Surface * _ScreenVisual;
+	CGameManager  _Game;
 
 public:
 	void Init();

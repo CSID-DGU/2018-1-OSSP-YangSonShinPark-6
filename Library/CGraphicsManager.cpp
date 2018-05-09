@@ -10,7 +10,7 @@
 void CGraphicsManager::Init()
 {
 	if( SDL_Init(SDL_INIT_VIDEO) < 0 )
-			std::cout << "SDL could not initialize! SDL_ERROR" << SDL_GetError() << std::endl;
+			std::cout << "SDL could not initialize! SDL_ERROR " << SDL_GetError() << std::endl;
 	else
 	{
 		//!< Create Window
@@ -22,11 +22,15 @@ void CGraphicsManager::Init()
 										SDL_WINDOW_SHOWN);
 		if( _Window == NULL )
 			std::cout << "Window could not be created!" << std::endl;
-		elseP
+		else
 		{
-			_ScreenSurface = SDL_GetWindowSurface(_Window);
-			SDL_FillRect( _ScreenSurface, NULL, SDL_MapRGB(_ScreenSurface->format, 0xFF, 0xFF, 0xFF));
-			SDL_UpdateWindowSurface(_Window);
+			_Context = SDL_GL_CreateContext(_Window);
+
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			glEnable(GL_BLEND);
+			glEnable(GL_TEXTURE_2D);
+			glOrtho(0, __D_SCREEN_WIDTH__, __D_SCREEN_HEIGHT__, 0, -1, 1);
+
 			_Game.Init();
 		}
 	}
@@ -34,13 +38,17 @@ void CGraphicsManager::Init()
 
 void CGraphicsManager::Loop()
 {
-	_Game.Loop();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	_Game.Loop(_ScreenSurface);
+
+	SDL_GL_SwapWindow(_Window);
 }
 
 void CGraphicsManager::Exit()
 {
 	_Game.Exit();
 
+	IMG_Quit();
 	SDL_DestroyWindow(_Window);
 	SDL_Quit();
 }

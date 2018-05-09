@@ -10,9 +10,12 @@
 #pragma once
 
 #include <iostream>
+#include <SDL2/SDL_opengl.h>
+#include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
 
 #include "MY_DEFINE.h"
 
+#include "Library/CImageRenderer.h"
 #include "Library/CGameManager.h"
 #include "Library/CGraphicsManager.h"
