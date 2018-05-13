@@ -10,16 +10,15 @@
 
 class CImageRenderer {
 	SDL_Surface * _Image;
-	SDL_RWops   * _Rwop;
-	GLubyte	 *	_Map;
-	GLuint			_TexID;
+	SDL_Surface * _Origin;
 
 	int 			_nWidth;
 	int 			_nHeight;
 
 public:
-	void SetImage(const std::string& filePath);
+	void SetImage(const std::string& filePath, SDL_Surface * screen);
 	void Render(SDL_Surface * screen);
+	void Exit();
 };
 
 #endif /* LIBRARY_CIMAGERENDERER_H_ */

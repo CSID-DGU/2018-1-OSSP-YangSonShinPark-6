@@ -10,7 +10,10 @@
 void CGraphicsManager::Init()
 {
 	if( SDL_Init(SDL_INIT_VIDEO) < 0 )
+	{
 			std::cout << "SDL could not initialize! SDL_ERROR " << SDL_GetError() << std::endl;
+			_bLoop = false;
+	}
 	else
 	{
 		//!< Create Window
@@ -21,9 +24,13 @@ void CGraphicsManager::Init()
 										__D_SCREEN_HEIGHT__,
 										SDL_WINDOW_SHOWN);
 		if( _Window == NULL )
+		{
 			std::cout << "Window could not be created!" << std::endl;
+			_bLoop = false;
+		}
 		else
 		{
+			_bLoop = true;
 			_Context = SDL_GL_CreateContext(_Window);
 
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -31,17 +38,23 @@ void CGraphicsManager::Init()
 			glEnable(GL_TEXTURE_2D);
 			glOrtho(0, __D_SCREEN_WIDTH__, __D_SCREEN_HEIGHT__, 0, -1, 1);
 
-			_Game.Init();
+			_Game.Init(_ScreenSurface);
 		}
 	}
 }
 
 void CGraphicsManager::Loop()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	_Game.Loop(_ScreenSurface);
+	while(_bLoop)
+	{
+		SDL_PollEvent(&_Event);
+				if( _Event.type == SDL_KEYDOWN )
+					if( _Event.key.keysym.sym == SDLK_ESCAPE )
+						_bLoop = false;
 
-	SDL_GL_SwapWindow(_Window);
+		_Game.Loop();
+		SDL_UpdateWindowSurface(_Window);
+	}
 }
 
 void CGraphicsManager::Exit()

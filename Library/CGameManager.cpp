@@ -7,22 +7,20 @@
 
 #include "../stdafx.h"
 
-void CGameManager::Init()
+void CGameManager::Init(SDL_Surface * screen)
 {
 	_bGame = true;
-	_Image.SetImage("apple.png");
+	_Screen = screen;
+	_Image.SetImage("apple.png", _Screen);
 }
 
-void CGameManager::Loop(SDL_Surface * screen)
+void CGameManager::Loop()
 {
 	while(_bGame)
 	{
-		SDL_PollEvent(&_Event);
-		if( _Event.type == SDL_KEYDOWN )
-			if( _Event.key.keysym.sym == SDLK_ESCAPE )
-				_bGame = false;
 
-		_Image.Render(screen);
+
+		_Image.Render(_Screen);
 	}
 }
 

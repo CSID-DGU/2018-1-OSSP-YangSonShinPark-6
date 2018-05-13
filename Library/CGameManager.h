@@ -9,14 +9,14 @@
 #define LIBRARY_CGAMEMANAGER_H_
 
 class CGameManager {
-	SDL_Event _Event;
+	SDL_Surface* _Screen;
 
 	CImageRenderer _Image;
 
 	bool _bGame;
 public:
-	void Init();
-	void Loop(SDL_Surface * screen);
+	void Init(SDL_Surface * screen);
+	void Loop();
 	void Exit();
 };
 
