@@ -1,10 +1,3 @@
-/*
- * CMenu.h
- *
- *  Created on: 2018. 5. 14.
- *      Author: root
- */
-
 #ifndef LIBRARY_CMENU_H_
 #define LIBRARY_CMENU_H_
 
