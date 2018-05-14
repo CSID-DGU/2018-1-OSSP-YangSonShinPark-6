@@ -9,9 +9,9 @@
 #define LIBRARY_CGAMEMANAGER_H_
 
 class CGameManager {
-	SDL_Surface* _Screen;
+	eGameState 					_eState;
 
-	CImageRenderer _Image;
+	std::vector<CSceneManager*> _vScene;
 
 	bool _bGame;
 public:
