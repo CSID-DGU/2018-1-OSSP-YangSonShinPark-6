@@ -30,15 +30,15 @@ void CGraphicsManager::Init()
 		}
 		else
 		{
-			_bLoop = true;
-			_Context = SDL_GL_CreateContext(_Window);
+			if( !(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) )
+				_bLoop = false;
+			else
+			{
+				_bLoop = true;
+				_ScreenSurface = SDL_GetWindowSurface(_Window);
 
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			glEnable(GL_BLEND);
-			glEnable(GL_TEXTURE_2D);
-			glOrtho(0, __D_SCREEN_WIDTH__, __D_SCREEN_HEIGHT__, 0, -1, 1);
-
-			_Game.Init(_ScreenSurface);
+				_Game.Init(_ScreenSurface);
+			}
 		}
 	}
 }

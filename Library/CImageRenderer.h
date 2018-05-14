@@ -11,13 +11,14 @@
 class CImageRenderer {
 	SDL_Surface * _Image;
 	SDL_Surface * _Origin;
+	SDL_Surface * _Screen;
 
 	int 			_nWidth;
 	int 			_nHeight;
 
 public:
 	void SetImage(const std::string& filePath, SDL_Surface * screen);
-	void Render(SDL_Surface * screen);
+	void Render();
 	void Exit();
 };
 

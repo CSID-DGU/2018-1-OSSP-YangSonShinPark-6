@@ -10,7 +10,6 @@
 
 class CGraphicsManager {
 	SDL_Window * 	_Window;
-	SDL_GLContext _Context;
 	SDL_Surface * _ScreenSurface;
 
 
