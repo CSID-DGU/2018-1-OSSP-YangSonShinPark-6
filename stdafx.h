@@ -17,7 +17,11 @@
 
 #include "MY_DEFINE.h"
 
-#include "Library/CSceneManager.h"
 #include "Library/CImageRenderer.h"
+
+//!< Scenes
+#include "Library/CSceneManager.h"
+#include "Class/CMenu.h"
+
 #include "Library/CGameManager.h"
 #include "Library/CGraphicsManager.h"

@@ -12,7 +12,6 @@ class CGraphicsManager {
 	SDL_Window * 	_Window;
 	SDL_Surface * _ScreenSurface;
 
-
 	SDL_Event 		_Event;
 	CGameManager  _Game;
 

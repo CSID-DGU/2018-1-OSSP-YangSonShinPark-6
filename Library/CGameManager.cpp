@@ -9,16 +9,21 @@
 
 void CGameManager::Init(SDL_Surface * screen)
 {
-	_Screen = screen;
-	_Image.SetImage("apple.png", _Screen);
+	g_eState = (int)__E_MENU__;
+
+	_vScene.push_back(new CMenu());
+
+	for(int i = 0; i < _vScene.size(); i++)
+		_vScene[i]->Init(screen);
 }
 
 void CGameManager::Loop()
 {
-	_Image.Render(_Screen);
+	_vScene[g_eState]->Update();
+	_vScene[g_eState]->Render();
 }
 
 void CGameManager::Exit()
 {
-
+	_vScene[g_eState]->Exit();
 }

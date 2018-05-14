@@ -21,16 +21,19 @@ void CImageRenderer::SetImage(const std::string& filePath, SDL_Surface * screen)
 		if(_Origin == NULL)
 			std::cout << "Unable to optimize img" << path << std::endl;
 
+		_Rect.x = 0; 	_Rect.y = 0;
+		_Rect.w = _Origin->w; 	_Rect.h = _Origin->h;
+
 		SDL_FreeSurface(_Image);
 	}
 }
 
 void CImageRenderer::Render()
 {
-	SDL_BlitSurface(_Origin, NULL, _Screen, NULL);
+	SDL_BlitSurface(_Origin, NULL, _Screen, &_Rect);
 }
 
 void CImageRenderer::Exit()
 {
-
+	SDL_FreeSurface(_Origin);
 }
