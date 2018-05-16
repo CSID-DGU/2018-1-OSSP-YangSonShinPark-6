@@ -1,11 +1,24 @@
-#ifndef LIBRARY_CMENU_H_
-#define LIBRARY_CMENU_H_
+/*
+ * CMenu.h
+ *
+ *  Created on: 2018. 5. 16.
+ *      Author: root
+ */
 
-class CMenu : public CSceneManager {
+#ifndef CLASS_CMENU_H_
+#define CLASS_CMENU_H_
 
+class CMenu : public CSceneManager
+{
 	CImageRenderer _BackGround;
 	CImageRenderer _StartButton;
 	CImageRenderer _OptionButton;
+
+
+	stPos 			 _MousePosition;
+
+private:
+	void MouseEvent();
 
 public:
 	virtual void Init(SDL_Surface * screen);
@@ -14,4 +27,4 @@ public:
 	virtual void Exit();
 };
 
-#endif /* LIBRARY_CMENU_H_ */
+#endif /* CLASS_CMENU_H_ */
