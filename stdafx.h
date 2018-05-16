@@ -19,9 +19,12 @@
 
 #include "Library/CImageRenderer.h"
 
+#include "Library/CObject.h"
+
 //!< Scenes
 #include "Library/CSceneManager.h"
 #include "Class/CMenu.h"
+#include "Class/CGame.h"
 
 #include "Library/CGameManager.h"
 #include "Library/CGraphicsManager.h"

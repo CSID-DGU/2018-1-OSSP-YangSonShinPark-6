@@ -3,6 +3,9 @@
 
 class CGame : public CSceneManager{
 
+	CImageRenderer img;
+
+public:
 	virtual void Init(SDL_Surface * screen);
 	virtual void Update();
 	virtual void Render();
