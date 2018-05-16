@@ -12,6 +12,7 @@ void CMenu::Init(SDL_Surface * screen)
 void CMenu::Update()
 {
 
+
 }
 
 void CMenu::Render()
@@ -25,4 +26,5 @@ void CMenu::Exit()
 {
 	_BackGround.Exit();
 	_StartButton.Exit();
+	_OptionButton.Exit();
 }
