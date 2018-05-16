@@ -37,6 +37,7 @@ void CGraphicsManager::Init()
 				_bLoop = true;
 				_ScreenSurface = SDL_GetWindowSurface(_Window);
 
+
 				_Game.Init(_ScreenSurface);
 			}
 		}

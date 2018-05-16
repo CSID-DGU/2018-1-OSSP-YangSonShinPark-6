@@ -12,6 +12,7 @@ void CGameManager::Init(SDL_Surface * screen)
 	g_eState = (int)__E_MENU__;
 
 	_vScene.push_back(new CMenu());
+	_vScene.push_back(new CGame());
 
 	for(int i = 0; i < _vScene.size(); i++)
 		_vScene[i]->Init(screen);
