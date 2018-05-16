@@ -37,6 +37,7 @@ void CGraphicsManager::Init()
 				_bLoop = true;
 				_ScreenSurface = SDL_GetWindowSurface(_Window);
 
+
 				_Game.Init(_ScreenSurface);
 			}
 		}
@@ -48,10 +49,11 @@ void CGraphicsManager::Loop()
 	while(_bLoop)
 	{
 		SDL_PollEvent(&_Event);
-				if( _Event.type == SDL_KEYDOWN )
-					if( _Event.key.keysym.sym == SDLK_ESCAPE )
-						_bLoop = false;
+		if( _Event.type == SDL_KEYDOWN )
+			if( _Event.key.keysym.sym == SDLK_ESCAPE )
+				_bLoop = false;
 
+		SDL_FillRect(_ScreenSurface, NULL, 0x000000);
 		_Game.Loop();
 		SDL_UpdateWindowSurface(_Window);
 	}

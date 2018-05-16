@@ -17,7 +17,7 @@ void CImageRenderer::SetImage(const std::string& filePath, SDL_Surface * screen)
 		std::cout << filePath << " : Cannot find" << std::endl;
 	else
 	{
-		_Origin = SDL_ConvertSurface(_Image, _Screen->format, 0);
+		_Origin = SDL_ConvertSurfaceFormat(_Image, SDL_PIXELFORMAT_ABGR8888, 0);
 		if(_Origin == NULL)
 			std::cout << "Unable to optimize img" << path << std::endl;
 
