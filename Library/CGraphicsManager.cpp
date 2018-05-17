@@ -12,7 +12,7 @@ void CGraphicsManager::Init()
 	if( SDL_Init(SDL_INIT_VIDEO) < 0 )
 	{
 			std::cout << "SDL could not initialize! SDL_ERROR " << SDL_GetError() << std::endl;
-			_bLoop = false;
+			g_bLoop = false;
 	}
 	else
 	{
@@ -26,17 +26,16 @@ void CGraphicsManager::Init()
 		if( _Window == NULL )
 		{
 			std::cout << "Window could not be created!" << std::endl;
-			_bLoop = false;
+			g_bLoop = false;
 		}
 		else
 		{
 			if( !(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) )
-				_bLoop = false;
+				g_bLoop = false;
 			else
 			{
-				_bLoop = true;
+				g_bLoop = true;
 				_ScreenSurface = SDL_GetWindowSurface(_Window);
-
 
 				_Game.Init(_ScreenSurface);
 			}
@@ -46,13 +45,8 @@ void CGraphicsManager::Init()
 
 void CGraphicsManager::Loop()
 {
-	while(_bLoop)
+	while(g_bLoop)
 	{
-		SDL_PollEvent(&_Event);
-		if( _Event.type == SDL_KEYDOWN )
-			if( _Event.key.keysym.sym == SDLK_ESCAPE )
-				_bLoop = false;
-
 		SDL_FillRect(_ScreenSurface, NULL, 0x000000);
 		_Game.Loop();
 		SDL_UpdateWindowSurface(_Window);

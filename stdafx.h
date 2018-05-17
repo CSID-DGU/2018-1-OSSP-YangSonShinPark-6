@@ -18,6 +18,7 @@
 #include "MY_DEFINE.h"
 
 #include "Library/CImageRenderer.h"
+#include "Library/CAnimationRenderer.h"
 
 #include "Library/CObject.h"
 

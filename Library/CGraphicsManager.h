@@ -15,8 +15,6 @@ class CGraphicsManager {
 	SDL_Event 		_Event;
 	CGameManager  _Game;
 
-	bool			_bLoop;
-
 public:
 	void Init();
 	void Loop();

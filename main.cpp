@@ -2,6 +2,7 @@
 
 //!< global variables
 int g_eState;
+bool g_bLoop = true;
 
 int main(int argc, char * args[])
 {
