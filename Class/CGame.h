@@ -3,12 +3,14 @@
 
 class CGame : public CSceneManager{
 
-	CImageRenderer img;
-	stPos _Pos;
+	CChar _Char;
+
 	bool _bKeyState[__E_KEY_MAX__];
 
 private:
 	void KeyEvent();
+	void Movement();
+	bool IsCollision(const stPos& target, const stPos& col, const int& cSize);
 
 public:
 	virtual void Init(SDL_Surface * screen);

@@ -21,6 +21,7 @@
 #include "Library/CAnimationRenderer.h"
 
 #include "Library/CObject.h"
+#include "Class/CChar.h"
 
 //!< Scenes
 #include "Library/CSceneManager.h"

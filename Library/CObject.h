@@ -9,9 +9,10 @@
 #define LIBRARY_COBJECT_H_
 
 class CObject {
-	stPos 	_Pos;
 
 public:
+	stPos 	_Pos;
+
 	virtual void Init(SDL_Surface * screen) = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;

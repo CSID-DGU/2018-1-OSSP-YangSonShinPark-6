@@ -5,7 +5,7 @@
  *      Author: root
  */
 
-#include "stdafx.h"
+#include "../stdafx.h"
 
 void CAnimationRenderer::SetImage(const std::string& path, SDL_Surface * screen, const float& frame)
 {
@@ -24,8 +24,8 @@ void CAnimationRenderer::SetImage(const std::string& path, SDL_Surface * screen,
 	for(int i = 1 ; i <= frame ; i++)
 	{
 		CImageRenderer * image = new CImageRenderer();
-		std::string imgPath = "resource/" + path + i + ".png";
-		image->SetImage(imgPath, screen);
+		//std::string imgPath = "resource/" + path + i + ".png";
+		//image->SetImage(imgPath, screen);
 		_vAnimation.push_back(image);
 	}
 
