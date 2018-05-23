@@ -10,7 +10,9 @@
 #pragma once
 
 #include <iostream>
+#include <sstream>
 #include <vector>
+#include <string>
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
@@ -22,6 +24,7 @@
 
 #include "Library/CObject.h"
 #include "Class/CChar.h"
+#include "Class/CItem.h"
 
 //!< Scenes
 #include "Library/CSceneManager.h"

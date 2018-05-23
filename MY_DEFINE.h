@@ -2,6 +2,7 @@
 
 #define __D_SCREEN_WIDTH__ 480
 #define __D_SCREEN_HEIGHT__ 720
+#define __D_TIME__ uint32_t
 
 typedef struct __ST_POS__
 {
@@ -16,6 +17,20 @@ typedef enum __E_GAME_STATE__
 	__E_OPTION__,
 	__E_OVER__,
 } eGameState;
+
+typedef enum __E_ITEM_TYPE__
+{
+	__E_ITEM_MOUSE__ = 0,
+	__E_ITEM_BUG__,
+	__E_ITEM_ROCK__,
+	__E_ITEM_STICK__,
+	__E_ITEM_STONE__,
+	__E_ITEM_THORN__,
+	__E_ITEM_BORN__,
+	__E_ITEM_BOOST__,
+	__E_ITEM_SUPER__,
+	__E_ITEM_MAX__,
+} eItem;
 
 typedef enum __E_KEY_STATE__
 {

@@ -9,6 +9,9 @@
 
 void CGraphicsManager::Init()
 {
+	_LastTime = 0;
+	_Deltatime = 0;
+
 	if( SDL_Init(SDL_INIT_VIDEO) < 0 )
 	{
 			std::cout << "SDL could not initialize! SDL_ERROR " << SDL_GetError() << std::endl;
@@ -34,6 +37,7 @@ void CGraphicsManager::Init()
 				g_bLoop = false;
 			else
 			{
+				srand(time(NULL));
 				g_bLoop = true;
 				_ScreenSurface = SDL_GetWindowSurface(_Window);
 

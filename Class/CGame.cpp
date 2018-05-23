@@ -4,34 +4,51 @@ void CGame::Init(SDL_Surface * screen)
 {
 	_Screen = screen;
 	_Char.Init(screen);
+	for(int i = 0 ; i < 10 ; i++)
+		MakeItem();
 }
 
 void CGame::Update()
 {
+	__D_TIME__ tick = SDL_GetTicks();
 	KeyEvent();
 
 	_Char.Update();
-	stPos ps;
-	if(IsCollision(_Char.GetPos(), ps, 100))
-		std::cout << "COL" << std::endl;
+	for(int i = 0 ; i < _Items.size() ; i++)
+	{
+		_Items[i]->Update();
+		if(IsCollision(_Char.GetPos(), _Items[i]->GetPos(), 128))
+			std::cout << "COL" << std::endl;
+	}
 }
 
 void CGame::Render()
 {
 	_Char.Render();
+	for(int i = 0 ; i < _Items.size() ; i++)
+		_Items[i]->Render();
 }
 
 void CGame::Exit()
 {
 	_Char.Exit();
+	for(int i = 0 ; i < _Items.size() ; i++)
+		delete _Items[i];
 }
 
 void CGame::Movement()
 {
-	if( _bKeyState[__E_UP__]) _Char.SetPos(_Char.GetPos()._x, _Char.GetPos()._y - 1);
-	if( _bKeyState[__E_DOWN__]) _Char.SetPos(_Char.GetPos()._x, _Char.GetPos()._y + 1);
-	if( _bKeyState[__E_LEFT__]) _Char.SetPos(_Char.GetPos()._x - 1, _Char.GetPos()._y);
-	if( _bKeyState[__E_RIGHT__]) _Char.SetPos(_Char.GetPos()._x + 1, _Char.GetPos()._y);
+	if( _bKeyState[__E_UP__]) _Char.SetPos(_Char.GetPos()._x, _Char.GetPos()._y - 2);
+	if( _bKeyState[__E_DOWN__]) _Char.SetPos(_Char.GetPos()._x, _Char.GetPos()._y + 2);
+	if( _bKeyState[__E_LEFT__]) _Char.SetPos(_Char.GetPos()._x - 2, _Char.GetPos()._y);
+	if( _bKeyState[__E_RIGHT__]) _Char.SetPos(_Char.GetPos()._x + 2, _Char.GetPos()._y);
+}
+
+void CGame::MakeItem()
+{
+	CItem* item = new CItem;
+	item->Init(_Screen);
+	_Items.push_back(item);
 }
 
 void CGame::KeyEvent()

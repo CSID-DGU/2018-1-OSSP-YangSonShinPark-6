@@ -15,6 +15,9 @@ class CGraphicsManager {
 	SDL_Event 		_Event;
 	CGameManager  _Game;
 
+	__D_TIME__ _LastTime;
+	__D_TIME__ _Deltatime;
+
 public:
 	void Init();
 	void Loop();

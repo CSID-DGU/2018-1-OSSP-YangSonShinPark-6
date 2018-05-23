@@ -9,9 +9,15 @@
 #define CLASS_CITEM_H_
 
 class CItem : public CObject {
+	std::vector<CImageRenderer> _Items;
+	eItem _ItemType;
+	bool _bDead;
+
 public:
-	CItem();
-	virtual ~CItem();
+	virtual void Init(SDL_Surface * screen);
+	virtual void Update();
+	virtual void Render();
+	virtual void Exit();
 };
 
 #endif /* CLASS_CITEM_H_ */
