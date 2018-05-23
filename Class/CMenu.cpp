@@ -36,4 +36,7 @@ void CMenu::MouseEvent()
 	if(_MousePosition._x >= 25 && _MousePosition._x < 455 &&
 			_MousePosition._y >= 600 && _MousePosition._y < 680 )
 		g_eState = __E_GAME__;
+	if(_MousePosition._x >= 380 && _MousePosition._x < 460 &&
+			_MousePosition._y >= 500 && _MousePosition._y < 580 )
+		g_eState = __E_OPTION__;
 }

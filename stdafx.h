@@ -27,6 +27,7 @@
 #include "Library/CSceneManager.h"
 #include "Class/CMenu.h"
 #include "Class/CGame.h"
+#include "Class/COption.h"
 
 #include "Library/CGameManager.h"
 #include "Library/CGraphicsManager.h"

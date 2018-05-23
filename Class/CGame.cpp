@@ -12,8 +12,6 @@ void CGame::Update()
 
 	_Char.Update();
 	stPos ps;
-	ps._x = 100; ps._y = 100;
-	std::cout << "X : " << _Char.GetPos()._x << " Y : " << _Char.GetPos()._y << std::endl;
 	if(IsCollision(_Char.GetPos(), ps, 100))
 		std::cout << "COL" << std::endl;
 }
