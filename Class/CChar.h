@@ -18,11 +18,16 @@ class CChar : public CObject {
 	CImageRenderer _Image5;
 	CImageRenderer _Image6;
 
+	int 			 _nSpeed;
+
 public:
 	virtual void Init(SDL_Surface * screen);
 	virtual void Update();
 	virtual void Render();
 	virtual void Exit();
+
+	//!< Getter
+	int GetSpeed() { return _nSpeed; }
 
 };
 

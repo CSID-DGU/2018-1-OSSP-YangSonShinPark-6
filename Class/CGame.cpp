@@ -16,7 +16,7 @@ void CGame::Update()
 	for(int i = 0 ; i < _Items.size() ; i++)
 	{
 		_Items[i]->Update();
-		if(IsCollision(_Char.GetPos(), _Items[i]->GetPos(), 32))
+		if(IsCollision(_Char.GetPos(), _Items[i]->GetPos(), 64, 32))
 			std::cout << "COL" << std::endl;
 	}
 }
@@ -37,10 +37,10 @@ void CGame::Exit()
 
 void CGame::Movement()
 {
-	if( _bKeyState[__E_UP__]) _Char.SetPos(_Char.GetPos()._x, _Char.GetPos()._y - 2);
-	if( _bKeyState[__E_DOWN__]) _Char.SetPos(_Char.GetPos()._x, _Char.GetPos()._y + 2);
-	if( _bKeyState[__E_LEFT__]) _Char.SetPos(_Char.GetPos()._x - 2, _Char.GetPos()._y);
-	if( _bKeyState[__E_RIGHT__]) _Char.SetPos(_Char.GetPos()._x + 2, _Char.GetPos()._y);
+	if( _bKeyState[__E_UP__]) _Char.SetPos(_Char.GetPos()._x, _Char.GetPos()._y - _Char.GetSpeed());
+	if( _bKeyState[__E_DOWN__]) _Char.SetPos(_Char.GetPos()._x, _Char.GetPos()._y + _Char.GetSpeed());
+	if( _bKeyState[__E_LEFT__]) _Char.SetPos(_Char.GetPos()._x - _Char.GetSpeed(), _Char.GetPos()._y);
+	if( _bKeyState[__E_RIGHT__]) _Char.SetPos(_Char.GetPos()._x + _Char.GetSpeed(), _Char.GetPos()._y);
 }
 
 void CGame::MakeItem()
@@ -96,10 +96,12 @@ void CGame::KeyEvent()
 	Movement();
 }
 
-bool CGame::IsCollision(const stPos& target, const stPos& col, const int& cSize)
+bool CGame::IsCollision(const stPos& target, const stPos& col, const int& tSize, const int& cSize)
 {
-	if((target._x >= col._x  && target._x <= col._x + cSize) &&
-			(target._y >= col._y && target._y <= col._y + cSize) )
+	if(((target._x >= col._x  && target._x <= col._x + cSize) ||
+		(target._x + tSize >= col._x && target._x + tSize <= col._x + cSize)	)&&
+		((target._y >= col._y && target._y <= col._y + cSize) ||
+		(target._y + tSize >= col._y && target._y + tSize <= col._y + cSize)))
 		return true;
 	return false;
 }

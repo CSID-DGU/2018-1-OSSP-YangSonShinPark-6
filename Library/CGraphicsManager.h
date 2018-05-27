@@ -15,8 +15,11 @@ class CGraphicsManager {
 	SDL_Event 		_Event;
 	CGameManager  _Game;
 
-	__D_TIME__ _LastTime;
-	__D_TIME__ _Deltatime;
+	Uint32 _deltaTime;
+	Uint32 _nFrameTime;
+
+private:
+	Uint32 CountTime();
 
 public:
 	void Init();

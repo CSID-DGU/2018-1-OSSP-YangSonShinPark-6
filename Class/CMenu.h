@@ -10,15 +10,18 @@
 
 class CMenu : public CSceneManager
 {
+	CImageRenderer _TitleGround;
 	CImageRenderer _BackGround;
 	CImageRenderer _StartButton;
 	CImageRenderer _OptionButton;
+
 
 
 	stPos 			 _MousePosition;
 
 private:
 	void MouseEvent();
+	void Move_Title();
 
 public:
 	virtual void Init(SDL_Surface * screen);

@@ -17,6 +17,9 @@ void CChar::Init(SDL_Surface * screen)
 	_Image6.SetImage("Object/BG_Tile_7.png",screen);
 
 	_Image.SetImage("Character/Mole_1.png", screen);
+	_Pos._x = 200;
+	_Pos._y = 700;
+	_nSpeed = 5;
 }
 
 void CChar::Update()

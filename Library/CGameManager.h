@@ -14,6 +14,7 @@ class CGameManager {
 	std::vector<CSceneManager*> _vScene;
 
 	bool _bGame;
+
 public:
 	void Init(SDL_Surface * screen);
 	void Loop();

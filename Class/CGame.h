@@ -12,7 +12,7 @@ private:
 	void KeyEvent();
 	void Movement();
 	void MakeItem();
-	bool IsCollision(const stPos& target, const stPos& col, const int& cSize);
+	bool IsCollision(const stPos& target, const stPos& col, const int& tSize, const int& cSize);
 
 public:
 	virtual void Init(SDL_Surface * screen);

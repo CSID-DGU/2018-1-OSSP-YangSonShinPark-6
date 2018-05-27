@@ -2,11 +2,18 @@
 
 void CMenu::Init(SDL_Surface * screen)
 {
+	_TitleGround.SetImage("UI/UI_Title.PNG", screen);
+	_TitleGround.SetPos(120 ,100);
 	_BackGround.SetImage("UI/Board_Main.PNG", screen);
 	_StartButton.SetImage("UI/Btn_Start.png", screen);
 	_StartButton.SetPos(25, 600);
 	_OptionButton.SetImage("UI/Btn_Option.png", screen);
 	_OptionButton.SetPos(380, 500);
+}
+
+void CMenu::Move_Title()
+{
+
 }
 
 void CMenu::Update()
@@ -20,12 +27,14 @@ void CMenu::Update()
 void CMenu::Render()
 {
 	_BackGround.Render();
+	_TitleGround.Render();
 	_StartButton.Render();
 	_OptionButton.Render();
 }
 
 void CMenu::Exit()
 {
+	_TitleGround.Exit();
 	_BackGround.Exit();
 	_StartButton.Exit();
 }
