@@ -1,7 +1,7 @@
 #pragma once
 
 #define __D_SCREEN_WIDTH__ 480
-#define __D_SCREEN_HEIGHT__ 720
+#define __D_SCREEN_HEIGHT__ 800
 #define __D_TIME__ uint32_t
 
 typedef struct __ST_POS__

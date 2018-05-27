@@ -10,14 +10,13 @@ void CGame::Init(SDL_Surface * screen)
 
 void CGame::Update()
 {
-	__D_TIME__ tick = SDL_GetTicks();
 	KeyEvent();
 
 	_Char.Update();
 	for(int i = 0 ; i < _Items.size() ; i++)
 	{
 		_Items[i]->Update();
-		if(IsCollision(_Char.GetPos(), _Items[i]->GetPos(), 128))
+		if(IsCollision(_Char.GetPos(), _Items[i]->GetPos(), 32))
 			std::cout << "COL" << std::endl;
 	}
 }

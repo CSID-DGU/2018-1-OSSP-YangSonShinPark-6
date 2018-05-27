@@ -15,6 +15,7 @@ void COption::Init(SDL_Surface * screen)
 void COption::Update()
 {
 
+
 }
 
 void COption::Render()
