@@ -21,6 +21,7 @@ void CItem::Init(SDL_Surface * screen)
 
 	_ItemType = (eItem)(rand() % (int)__E_ITEM_MAX__);
 	_Pos._x = rand() % __D_SCREEN_WIDTH__;
+	_Pos._y = 0;
 	_bDead = false;
 }
 
@@ -30,6 +31,8 @@ void CItem::Update()
 	_Items[_ItemType].SetPos(_Pos._x, _Pos._y);
 	if(_Pos._y >= __D_SCREEN_HEIGHT__)
 		_bDead = true;
+
+	//if()
 }
 
 void CItem::Render()

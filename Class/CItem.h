@@ -18,6 +18,11 @@ public:
 	virtual void Update();
 	virtual void Render();
 	virtual void Exit();
+
+	//!< Setter & Getter
+	void SetDead(bool dead) { _bDead = dead; }
+	eItem GetType() { return _ItemType; }
+	bool GetDead() { return _bDead; }
 };
 
 #endif /* CLASS_CITEM_H_ */

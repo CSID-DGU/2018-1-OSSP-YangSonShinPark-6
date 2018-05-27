@@ -15,6 +15,7 @@
 #include <string>
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_thread.h>
 #include <SDL2/SDL.h>
 
 #include "MY_DEFINE.h"
@@ -22,9 +23,11 @@
 #include "Library/CImageRenderer.h"
 #include "Library/CAnimationRenderer.h"
 
+//!< Objects
 #include "Library/CObject.h"
 #include "Class/CChar.h"
 #include "Class/CItem.h"
+#include "Class/CUI.h"
 
 //!< Scenes
 #include "Library/CSceneManager.h"

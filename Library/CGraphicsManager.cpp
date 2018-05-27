@@ -51,7 +51,7 @@ void CGraphicsManager::Loop()
 	{
 		_deltaTime = CountTime();
 		SDL_FillRect(_ScreenSurface, NULL, 0x000000);
-		_Game.Loop();
+		_Game.Loop(_deltaTime);
 		SDL_UpdateWindowSurface(_Window);
 		SDL_Delay(_deltaTime);
 		_nFrameTime += __D_FRAME_TIMER__;
