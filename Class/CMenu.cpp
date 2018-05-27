@@ -2,8 +2,10 @@
 
 void CMenu::Init(SDL_Surface * screen)
 {
+	_TitlePosition._x = 120;
+	_TitlePosition._y = 100;
 	_TitleGround.SetImage("UI/UI_Title.PNG", screen);
-	_TitleGround.SetPos(120 ,100);
+
 	_BackGround.SetImage("UI/Board_Main.PNG", screen);
 	_StartButton.SetImage("UI/Btn_Start.png", screen);
 	_StartButton.SetPos(25, 600);
@@ -13,18 +15,29 @@ void CMenu::Init(SDL_Surface * screen)
 
 void CMenu::Move_Title()
 {
+	if( _bUp ) _TitlePosition._y -= 1;
+	else _TitlePosition._y += 1;
 
+	if(_TitlePosition._y <= 80) _bUp = false;
+	else if(_TitlePosition._y >= 120) _bUp = true;
 }
 
-void CMenu::Update()
+void CMenu::Update(float dt)
 {
+	Move_Title();
+
+	_TitleGround.SetPos(_TitlePosition._x ,_TitlePosition._y);
+
 	SDL_Event e;
 	SDL_PollEvent(&e);
 	if( e.type == SDL_MOUSEBUTTONDOWN )
 		MouseEvent();
+	else if( e.type == SDL_KEYDOWN )
+		if(e.key.keysym.sym == SDLK_ESCAPE)
+			g_bLoop = false;
 }
 
-void CMenu::Render()
+void CMenu::Render(float dt)
 {
 	_BackGround.Render();
 	_TitleGround.Render();

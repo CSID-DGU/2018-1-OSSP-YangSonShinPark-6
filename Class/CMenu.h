@@ -15,9 +15,10 @@ class CMenu : public CSceneManager
 	CImageRenderer _StartButton;
 	CImageRenderer _OptionButton;
 
-
-
 	stPos 			 _MousePosition;
+	stPos 			 _TitlePosition;
+
+	bool 			 _bUp;
 
 private:
 	void MouseEvent();
@@ -25,8 +26,8 @@ private:
 
 public:
 	virtual void Init(SDL_Surface * screen);
-	virtual void Update();
-	virtual void Render();
+	virtual void Update(float dt);
+	virtual void Render(float dt);
 	virtual void Exit();
 };
 
