@@ -1,42 +1,52 @@
 /*
- * CChar.h
+ * CChar.cpp
  *
  *  Created on: 2018. 5. 19.
  *      Author: root
  */
 
-#ifndef CLASS_CCHAR_H_
-#define CLASS_CCHAR_H_
+#include "../stdafx.h"
 
-class CChar : public CObject {
-	CImageRenderer _Image;	//mole
+void CChar::Init(SDL_Surface * screen)
+{
 
-	CImageRenderer _Image1;	//backgroud
-	CImageRenderer _Image2;
-	CImageRenderer _Image3;
-	CImageRenderer _Image4;
-	CImageRenderer _Image5;
-	CImageRenderer _Image6;
+	_Image.SetImage("Character/Mole_1.png", screen);
+	_Pos._x = 200;
+	_Pos._y = 650;
+	_nSpeed = 5;
+	_nHp = 10;
+	_eState = __E_ITEM_MAX__;
+}
 
-	int 			 _nSpeed;
-	int 			 _nHp;
-	eItem		 	 _eState;
+void CChar::Update()
+{
+	CheckState();
 
-private:
-	void CheckState();
+	if(_Pos._x < -20) _Pos._x = -20;
+	else if(_Pos._x > 435) _Pos._x = 435;
 
-public:
-	virtual void Init(SDL_Surface * screen);
-	virtual void Update();
-	virtual void Render();
-	virtual void Exit();
+	_Image.SetPos(_Pos._x, _Pos._y);
+}
 
-	//!< Setter & Getter
-	void SetState(eItem st) { _eState = st; }
+void CChar::Render()
+{
+	_Image.Render();
+}
 
-	eItem GetState() { return _eState; }
-	int GetSpeed() { return _nSpeed; }
+void CChar::Exit()
+{
+	_Image.Exit();
+}
 
-};
-
-#endif /* CLASS_CCHAR_H_ */
+void CChar::CheckState()
+{
+	if( _eState != __E_ITEM_MAX__ )
+	{
+		if( _eState == __E_ITEM_BUG__ ) _nHp += 10;
+		else if( _eState == __E_ITEM_MOUSE__ ) _nHp += 30;
+		else if( _eState == __E_ITEM_BONE__ || _eState == __E_ITEM_THORN__ ) _nHp -= 10;
+		else if( _eState == __E_ITEM_STICK__ ) _nHp -= 5;
+		else if( _eState == __E_ITEM_ROCK__ || _eState == __E_ITEM_STONE__ ) _nHp -= 20;
+		_eState = __E_ITEM_MAX__;
+	}
+}
