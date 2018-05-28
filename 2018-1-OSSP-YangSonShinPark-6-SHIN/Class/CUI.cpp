@@ -9,36 +9,26 @@
 
 void CUI::Init(SDL_Surface * screen)
 {
-	for(int i = 0 ; i < 12 ; i++)
-	{
-		_BackGrounds[i].SetImage("Object/BG_Tile_7.png",screen);
-		if( i % 2 == 0 ) _BackGroundsPos[i]._x = 0;
-		else _BackGroundsPos[i]._x = 250;
-		_BackGroundsPos[i]._y = -500 + (250 * (int)(i/2));
-	}
+	_HPBar.SetImage("UI/UI_HealthBarInner.png", screen);
+	_HPBar.SetPos(28, 732);
+	_HPBarBG.SetImage("UI/UI_HealthBar.png", screen);
+	_HPBarBG.SetPos(0, 730);
 
-	_nScrollSpeed = 2;
 }
 
-void CUI::Update()
+void CUI::Update(int dt)
 {
-	for(int i = 0 ; i < 12 ; i++)
-	{
-		_BackGroundsPos[i]._y += _nScrollSpeed;
-		_BackGrounds[i].SetPos(_BackGroundsPos[i]._x, _BackGroundsPos[i]._y);
-		if(_BackGroundsPos[i]._y >= 800)
-			_BackGroundsPos[i]._y = -450;
-	}
+
 }
 
-void CUI::Render()
+void CUI::Render(int dt)
 {
-	for(int i = 0 ; i < 12 ; i++)
-		_BackGrounds[i].Render();
+	_HPBarBG.Render();
+	_HPBar.Render();
 }
 
 void CUI::Exit()
 {
-	for(int i = 0 ; i < 12 ; i++)
-		_BackGrounds[i].Exit();
+	_HPBarBG.Exit();
+	_HPBar.Exit();
 }

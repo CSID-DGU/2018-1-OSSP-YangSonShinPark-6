@@ -9,8 +9,9 @@
 
 void CChar::Init(SDL_Surface * screen)
 {
-
-	_Image.SetImage("Character/Mole_1.png", screen);
+//	_Image.SetImage("Character/Mole_1.png", screen);
+	_Ani.SetImage("Character/Mole_1.png", screen, 100);
+	_Ani.SetImage("Character/Mole_2.png", screen, 100);
 	_Pos._x = 200;
 	_Pos._y = 650;
 	_nSpeed = 5;
@@ -18,24 +19,24 @@ void CChar::Init(SDL_Surface * screen)
 	_eState = __E_ITEM_MAX__;
 }
 
-void CChar::Update()
+void CChar::Update(int dt)
 {
 	CheckState();
 
 	if(_Pos._x < -20) _Pos._x = -20;
 	else if(_Pos._x > 435) _Pos._x = 435;
 
-	_Image.SetPos(_Pos._x, _Pos._y);
+	_Ani.SetPos(_Pos);
 }
 
-void CChar::Render()
+void CChar::Render(int dt)
 {
-	_Image.Render();
+	_Ani.Render(dt);
 }
 
 void CChar::Exit()
 {
-	_Image.Exit();
+	_Ani.Exit();
 }
 
 void CChar::CheckState()
