@@ -12,7 +12,7 @@ void CGraphicsManager::Init()
 	if( SDL_Init(SDL_INIT_VIDEO) < 0 )
 	{
 			std::cout << "SDL could not initialize! SDL_ERROR " << SDL_GetError() << std::endl;
-			_bLoop = false;
+			g_bLoop = false;
 	}
 	else
 	{
@@ -26,17 +26,17 @@ void CGraphicsManager::Init()
 		if( _Window == NULL )
 		{
 			std::cout << "Window could not be created!" << std::endl;
-			_bLoop = false;
+			g_bLoop = false;
 		}
 		else
 		{
 			if( !(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) )
-				_bLoop = false;
+				g_bLoop = false;
 			else
 			{
-				_bLoop = true;
+				srand(time(NULL));
+				g_bLoop = true;
 				_ScreenSurface = SDL_GetWindowSurface(_Window);
-
 
 				_Game.Init(_ScreenSurface);
 			}
@@ -46,15 +46,15 @@ void CGraphicsManager::Init()
 
 void CGraphicsManager::Loop()
 {
-	while(_bLoop)
+	_nFrameTime = SDL_GetTicks() + __D_FRAME_TIMER__;
+	while(g_bLoop)
 	{
-		SDL_PollEvent(&_Event);
-				if( _Event.type == SDL_KEYDOWN )
-					if( _Event.key.keysym.sym == SDLK_ESCAPE )
-						_bLoop = false;
-
-		_Game.Loop();
+		_deltaTime = CountTime();
+		SDL_FillRect(_ScreenSurface, NULL, 0x000000);
+		_Game.Loop(_deltaTime);
 		SDL_UpdateWindowSurface(_Window);
+		SDL_Delay(_deltaTime);
+		_nFrameTime += __D_FRAME_TIMER__;
 	}
 }
 
@@ -65,6 +65,17 @@ void CGraphicsManager::Exit()
 	IMG_Quit();
 	SDL_DestroyWindow(_Window);
 	SDL_Quit();
+}
+
+Uint32 CGraphicsManager::CountTime()
+{
+	Uint32 now;
+
+	now = SDL_GetTicks();
+	if( _nFrameTime <= now )
+		return 0;
+	else
+		return _nFrameTime - now;
 }
 
 

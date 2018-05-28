@@ -13,15 +13,16 @@ void CGameManager::Init(SDL_Surface * screen)
 
 	_vScene.push_back(new CMenu());
 	_vScene.push_back(new CGame());
+	_vScene.push_back(new COption());
 
 	for(int i = 0; i < _vScene.size(); i++)
 		_vScene[i]->Init(screen);
 }
 
-void CGameManager::Loop()
+void CGameManager::Loop(int dt)
 {
-	_vScene[g_eState]->Update();
-	_vScene[g_eState]->Render();
+	_vScene[g_eState]->Update(dt);
+	_vScene[g_eState]->Render(dt);
 }
 
 void CGameManager::Exit()
