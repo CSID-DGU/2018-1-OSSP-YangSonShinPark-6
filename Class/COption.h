@@ -14,8 +14,8 @@ class COption : public CSceneManager{
 
 public:
 	virtual void Init(SDL_Surface * screen);
-	virtual void Update(float dt);
-	virtual void Render(float dt);
+	virtual void Update(int dt);
+	virtual void Render(int dt);
 	virtual void Exit();
 };
 #endif /* CLASS_COPTION_H_ */

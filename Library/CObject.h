@@ -14,8 +14,8 @@ public:
 	stPos 	_Pos;
 
 	virtual void Init(SDL_Surface * screen) = 0;
-	virtual void Update() = 0;
-	virtual void Render() = 0;
+	virtual void Update(int dt) = 0;
+	virtual void Render(int dt) = 0;
 	virtual void Exit() = 0;
 
 	//!< SETTER & GETTER

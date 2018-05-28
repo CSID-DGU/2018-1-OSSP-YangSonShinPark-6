@@ -9,14 +9,14 @@
 #define CLASS_CUI_H_
 
 class CUI : public CObject{
-	CImageRenderer _BackGrounds[12];
-	stPos 			 _BackGroundsPos[12];
 
-	int 			 _nScrollSpeed;
+	CImageRenderer _HPBar;
+	CImageRenderer _HPBarBG;
+
 public:
 	virtual void Init(SDL_Surface * screen);
-	virtual void Update();
-	virtual void Render();
+	virtual void Update(int dt);
+	virtual void Render(int dt);
 	virtual void Exit();
 };
 

@@ -10,6 +10,7 @@
 
 class CChar : public CObject {
 	CImageRenderer _Image;	//mole
+	CAnimationRenderer _Ani;
 
 	int 			 _nSpeed;
 	int 			 _nHp;
@@ -20,8 +21,8 @@ private:
 
 public:
 	virtual void Init(SDL_Surface * screen);
-	virtual void Update();
-	virtual void Render();
+	virtual void Update(int dt);
+	virtual void Render(int dt);
 	virtual void Exit();
 
 	//!< Setter & Getter

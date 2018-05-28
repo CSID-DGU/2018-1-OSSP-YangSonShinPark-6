@@ -12,13 +12,12 @@ void COption::Init(SDL_Surface * screen)
 	_Background.SetImage("UI/Board_Option.png", screen);
 }
 
-void COption::Update(float dt)
+void COption::Update(int dt)
 {
-
 
 }
 
-void COption::Render(float dt)
+void COption::Render(int dt)
 {
 	_Background.Render();
 }

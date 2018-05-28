@@ -17,7 +17,7 @@ class CGameManager {
 
 public:
 	void Init(SDL_Surface * screen);
-	void Loop(float dt);
+	void Loop(int dt);
 	void Exit();
 };
 

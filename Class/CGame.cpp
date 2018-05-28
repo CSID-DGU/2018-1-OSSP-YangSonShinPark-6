@@ -5,31 +5,37 @@ int KeyEvent(void * unused);
 void CGame::Init(SDL_Surface * screen)
 {
 	_Screen = screen;
-	_nItemTime = 700;
+	_nItemTime = 300;
 	_nCurrTime = 0;
+	_nLevelTime = 0;
+	g_nLevel = 1;
+
+	for(int i = 0 ; i < 12 ; i++)
+	{
+		_BackGrounds[i].SetImage("Object/BG_Tile_7.png",screen);
+		if( i % 2 == 0 ) _BackGroundsPos[i]._x = 0;
+		else _BackGroundsPos[i]._x = 250;
+		_BackGroundsPos[i]._y = -500 + (250 * (int)(i/2));
+	}
+
 	_Thread = SDL_CreateThread(KeyEvent, NULL, NULL);
 	_Char.Init(screen);
 	_UI.Init(screen);
 }
 
-void CGame::Update(float dt)
+void CGame::Update(int dt)
 {
-	_nCurrTime += (int)dt;
-	if( _nCurrTime > _nItemTime )
-	{
-		MakeItem();
-		_nCurrTime = 0;
-		_nItemTime = 650 + rand() % 1000;
-	}
-
-	_UI.Update();
+	Timer(dt);
+	BackGround();
 	Movement();
-	_Char.Update();
+
+	_UI.Update(dt);
+	_Char.Update(dt);
 
 	for(int i = 0 ; i < _Items.size() ; i++)
 	{
-		_Items[i]->Update();
-		if(IsCollision(_Char.GetPos(), _Items[i]->GetPos(), 64, 32))
+		_Items[i]->Update(dt);
+		if(IsCollision(_Char.GetPos(), _Items[i]->GetPos(), 64, 56))
 		{
 			_Items[i]->SetDead(true);
 			_Char.SetState(_Items[i]->GetType());
@@ -44,26 +50,64 @@ void CGame::Update(float dt)
 	}
 }
 
-void CGame::Render(float dt)
+void CGame::Render(int dt)
 {
-	_UI.Render();
+	for(int i = 0 ; i < 12 ; i++)
+		_BackGrounds[i].Render();
+
 	for(int i = 0 ; i < _Items.size() ; i++)
-		_Items[i]->Render();
-	_Char.Render();
+		_Items[i]->Render(dt);
+
+	_UI.Render(dt);
+	_Char.Render(dt);
 }
 
 void CGame::Exit()
 {
+	for(int i = 0 ; i < 12 ; i++)
+		_BackGrounds[i].Exit();
 	_UI.Exit();
 	_Char.Exit();
 	for(int i = 0 ; i < _Items.size() ; i++)
 		delete _Items[i];
 }
 
+void CGame::Timer(int dt)
+{
+	_nCurrTime += dt;
+	_nLevelTime += dt;
+
+	if(_nLevelTime > 20000)
+	{
+		g_nLevel++;
+		_nLevelTime = 0;
+	}
+
+	if( _nCurrTime > _nItemTime )
+	{
+		MakeItem();
+		MakeItem();
+		_nCurrTime = 0;
+		_nItemTime = 350 + rand() % 200;
+	}
+
+}
+
 void CGame::Movement()
 {
 	if( g_bKeyState[__E_LEFT__]) _Char.SetPos(_Char.GetPos()._x - _Char.GetSpeed(), _Char.GetPos()._y);
 	if( g_bKeyState[__E_RIGHT__]) _Char.SetPos(_Char.GetPos()._x + _Char.GetSpeed(), _Char.GetPos()._y);
+}
+
+void CGame::BackGround()
+{
+	for(int i = 0 ; i < 12 ; i++)
+	{
+		_BackGroundsPos[i]._y += g_nLevel * 2;
+		_BackGrounds[i].SetPos(_BackGroundsPos[i]._x, _BackGroundsPos[i]._y);
+		if(_BackGroundsPos[i]._y >= 800)
+			_BackGroundsPos[i]._y = -450;
+	}
 }
 
 void CGame::MakeItem()
@@ -107,6 +151,10 @@ int KeyEvent(void * unused)
 				break;
 			case SDLK_ESCAPE:
 				g_bLoop = false;
+				break;
+			case SDLK_0:
+				g_nLevel++;
+				break;
 			}
 		}
 		else if( e.type == SDL_KEYUP )

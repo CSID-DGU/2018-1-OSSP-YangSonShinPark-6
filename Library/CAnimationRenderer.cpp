@@ -7,46 +7,47 @@
 
 #include "../stdafx.h"
 
-void CAnimationRenderer::SetImage(const std::string& path, SDL_Surface * screen, const float& frame)
+void CAnimationRenderer::SetImage(const std::string& path, SDL_Surface * screen, const int& frame)
 {
 	CImageRenderer * image = new CImageRenderer();
-	std::string imgPath = "resource/" + path;
-	image->SetImage(imgPath, screen);
+	image->SetImage(path, screen);
 
 	_vAnimation.push_back(image);
-
+	_nSceneTimer = frame;
 	_idx = 0;
 	_maxFrame = _vAnimation.size();
 }
 
-void CAnimationRenderer::SetImage(const std::string& path, SDL_Surface * screen, const float& frame, const int& num)
+void CAnimationRenderer::SetImage(const std::string& path, SDL_Surface * screen, const int& frame, const int& num)
 {
-	for(int i = 1 ; i <= frame ; i++)
+	for(int i = 1 ; i <= num ; i++)
 	{
 		CImageRenderer * image = new CImageRenderer();
 		std::ostringstream stream;
 		stream << i;
-		std::string imgPath = "resource/" + path + stream.str() + ".png";
+		std::string imgPath = path + stream.str() + ".png";
 		image->SetImage(imgPath, screen);
 		_vAnimation.push_back(image);
 	}
 
 	_idx = 0;
 	_maxFrame = _vAnimation.size();
+	_nSceneTimer = frame;
 }
 
-void CAnimationRenderer::Render(float dt)
+void CAnimationRenderer::Render(int dt)
 {
-	if( _fCurrTime > _fSceneTimer )
+	if( _nCurrTime > _nSceneTimer )
 	{
 		_idx++;
+		_nCurrTime = 0;
 		if( _idx >= _maxFrame )
 			_idx = 0;
 	}
 
 	_vAnimation[_idx]->Render();
 
-	_fCurrTime += dt;
+	_nCurrTime += dt;
 }
 
 void CAnimationRenderer::Exit()

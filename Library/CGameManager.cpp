@@ -19,7 +19,7 @@ void CGameManager::Init(SDL_Surface * screen)
 		_vScene[i]->Init(screen);
 }
 
-void CGameManager::Loop(float dt)
+void CGameManager::Loop(int dt)
 {
 	_vScene[g_eState]->Update(dt);
 	_vScene[g_eState]->Render(dt);

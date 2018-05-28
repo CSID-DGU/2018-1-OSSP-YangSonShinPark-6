@@ -8,21 +8,24 @@ class CGame : public CSceneManager{
 	std::vector<CItem*> _Items;
 	SDL_Thread * _Thread;
 
-	bool _bKeyState[__E_KEY_MAX__];
+	CImageRenderer _BackGrounds[12];
+	stPos 			 _BackGroundsPos[12];
 
 	Uint32 _nItemTime;
+	Uint32 _nLevelTime;
 	Uint32 _nCurrTime;
 
 private:
-	//void KeyEvent();
+	void Timer(int dt);
 	void Movement();
+	void BackGround();
 	void MakeItem();
 	bool IsCollision(const stPos& target, const stPos& col, const int& tSize, const int& cSize);
 
 public:
 	virtual void Init(SDL_Surface * screen);
-	virtual void Update(float dt);
-	virtual void Render(float dt);
+	virtual void Update(int dt);
+	virtual void Render(int dt);
 	virtual void Exit();
 };
 
