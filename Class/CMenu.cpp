@@ -22,7 +22,7 @@ void CMenu::Move_Title()
 	else if(_TitlePosition._y >= 120) _bUp = true;
 }
 
-void CMenu::Update(float dt)
+void CMenu::Update(int dt)
 {
 	Move_Title();
 
@@ -37,7 +37,7 @@ void CMenu::Update(float dt)
 			g_bLoop = false;
 }
 
-void CMenu::Render(float dt)
+void CMenu::Render(int dt)
 {
 	_BackGround.Render();
 	_TitleGround.Render();
