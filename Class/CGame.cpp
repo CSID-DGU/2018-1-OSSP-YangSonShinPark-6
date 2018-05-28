@@ -47,14 +47,14 @@ void CGame::Update(float dt)
 void CGame::Render(float dt)
 {
 	_UI.Render();
-	_Char.Render();
 	for(int i = 0 ; i < _Items.size() ; i++)
 		_Items[i]->Render();
+	_Char.Render();
 }
 
 void CGame::Exit()
 {
-	_UI.Update();
+	_UI.Exit();
 	_Char.Exit();
 	for(int i = 0 ; i < _Items.size() ; i++)
 		delete _Items[i];
