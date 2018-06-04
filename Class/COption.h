@@ -11,6 +11,16 @@
 class COption : public CSceneManager{
 
 	CImageRenderer _Background;
+	CImageRenderer _Sound_IMG;
+	CImageRenderer _ON_Btn;
+	CImageRenderer _OFF_Btn;
+	CImageRenderer _Back_Btn;
+	CImageRenderer _Choose_Btn;
+
+	stPos 			 _MousePosition;
+
+private:
+	void MouseEvent();
 
 public:
 	virtual void Init(SDL_Surface * screen);
