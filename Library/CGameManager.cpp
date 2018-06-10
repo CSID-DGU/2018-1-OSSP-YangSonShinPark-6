@@ -13,16 +13,20 @@ void CGameManager::Init(SDL_Surface * screen)
 
 	_vScene.push_back(new CMenu());
 	_vScene.push_back(new CGame());
-	_vScene.push_back(new COption());
+	//_vScene.push_back(new COption());
 
 	for(int i = 0; i < _vScene.size(); i++)
 		_vScene[i]->Init(screen);
+
+	_StartTime = SDL_GetTicks();
 }
 
-void CGameManager::Loop(int dt)
+void CGameManager::Loop()
 {
-	_vScene[g_eState]->Update(dt);
-	_vScene[g_eState]->Render(dt);
+	_DeltaTime = SDL_GetTicks() - _StartTime;
+	_StartTime = SDL_GetTicks();
+	_vScene[g_eState]->Update(_DeltaTime);
+	_vScene[g_eState]->Render(_DeltaTime);
 }
 
 void CGameManager::Exit()

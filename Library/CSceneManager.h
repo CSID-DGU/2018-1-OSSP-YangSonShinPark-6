@@ -13,8 +13,8 @@ public:
 	SDL_Surface * _Screen;
 
 	virtual void Init(SDL_Surface * screen) = 0;
-	virtual void Update(int dt) = 0;
-	virtual void Render(int dt) = 0;
+	virtual void Update(Uint32 dt) = 0;
+	virtual void Render(Uint32 dt) = 0;
 	virtual void Exit() = 0;
 };
 

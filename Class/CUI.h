@@ -12,6 +12,8 @@ class CUI : public CObject{
 
 	CImageRenderer _HPBar;
 	CImageRenderer _HPBarBG;
+	std::vector<CImageRenderer*> _Score;
+	int _Scores[4];
 
 public:
 	virtual void Init(SDL_Surface * screen);

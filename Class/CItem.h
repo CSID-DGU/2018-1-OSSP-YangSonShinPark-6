@@ -9,18 +9,17 @@
 #define CLASS_CITEM_H_
 
 class CItem : public CObject {
-	std::vector<CImageRenderer> _Items;
+	CImageRenderer _Item;
 	eItem _ItemType;
 	bool _bDead;
-
-private:
-	eItem RandType();
 
 public:
 	virtual void Init(SDL_Surface * screen);
 	virtual void Update(int dt);
 	virtual void Render(int dt);
 	virtual void Exit();
+
+	void Make(const stItemInfo& info);
 
 	//!< Setter & Getter
 	void SetDead(bool dead) { _bDead = dead; }

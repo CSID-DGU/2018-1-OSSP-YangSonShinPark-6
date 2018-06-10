@@ -22,7 +22,7 @@ void CMenu::Move_Title()
 	else if(_TitlePosition._y >= 120) _bUp = true;
 }
 
-void CMenu::Update(int dt)
+void CMenu::Update(Uint32 dt)
 {
 	Move_Title();
 
@@ -37,7 +37,7 @@ void CMenu::Update(int dt)
 			g_bLoop = false;
 }
 
-void CMenu::Render(int dt)
+void CMenu::Render(Uint32 dt)
 {
 	_BackGround.Render();
 	_TitleGround.Render();
@@ -57,7 +57,10 @@ void CMenu::MouseEvent()
 	SDL_GetMouseState(&_MousePosition._x, &_MousePosition._y);
 	if(_MousePosition._x >= 25 && _MousePosition._x < 455 &&
 			_MousePosition._y >= 600 && _MousePosition._y < 680 )
+	{
+		SDL_Delay(500);
 		g_eState = __E_GAME__;
+	}
 	if(_MousePosition._x >= 380 && _MousePosition._x < 460 &&
 			_MousePosition._y >= 500 && _MousePosition._y < 580 )
 		g_eState = __E_OPTION__;

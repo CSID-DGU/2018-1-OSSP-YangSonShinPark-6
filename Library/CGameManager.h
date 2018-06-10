@@ -15,9 +15,12 @@ class CGameManager {
 
 	bool _bGame;
 
+	Uint32							_StartTime;
+	Uint32							_DeltaTime;
+
 public:
 	void Init(SDL_Surface * screen);
-	void Loop(int dt);
+	void Loop();
 	void Exit();
 };
 
