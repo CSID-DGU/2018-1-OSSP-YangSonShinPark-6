@@ -11,6 +11,10 @@
 class CChar : public CObject {
 	CImageRenderer _Image;	//mole
 	CAnimationRenderer _Ani;
+	CAnimationRenderer _Boost;
+	CAnimationRenderer _BoostEff;
+	CAnimationRenderer _HpEff;
+	CAnimationRenderer _LossEff;
 
 	int 			 _nSpeed;
 	int 			 _nHp;
@@ -26,7 +30,7 @@ public:
 	virtual void Exit();
 
 	//!< Setter & Getter
-	void SetState(eItem st) { _eState = st; }
+	void SetState(eItem st);
 
 	eItem GetState() { return _eState; }
 	int GetSpeed() { return _nSpeed; }

@@ -16,6 +16,7 @@ void CAnimationRenderer::SetImage(const std::string& path, SDL_Surface * screen,
 	_nSceneTimer = frame;
 	_idx = 0;
 	_maxFrame = _vAnimation.size();
+	_bShow = true;
 }
 
 void CAnimationRenderer::SetImage(const std::string& path, SDL_Surface * screen, const int& frame, const int& num)
@@ -33,20 +34,26 @@ void CAnimationRenderer::SetImage(const std::string& path, SDL_Surface * screen,
 	_idx = 0;
 	_maxFrame = _vAnimation.size();
 	_nSceneTimer = frame;
+	_bShow = true;
 }
 
 void CAnimationRenderer::Render(int dt)
 {
+	if(!_bShow)
+		return;
+
 	if( _nCurrTime > _nSceneTimer )
 	{
 		_idx++;
 		_nCurrTime = 0;
 		if( _idx >= _maxFrame )
+		{
 			_idx = 0;
+			if(!_bLoop)
+				_bShow = false;
+		}
 	}
-
 	_vAnimation[_idx]->Render();
-
 	_nCurrTime += dt;
 }
 

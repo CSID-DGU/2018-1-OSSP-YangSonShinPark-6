@@ -8,7 +8,18 @@ typedef struct __ST_POS__
 {
 	int _x;
 	int _y;
+	__ST_POS__() {_x = 0; _y = 0;}
+	__ST_POS__(const int& x, const int& y)
+			: _x(x), _y(y) { }
 } stPos;
+
+typedef struct __ST_ITEM_INFO__
+{
+	stPos _position;
+	char _type;
+	__ST_ITEM_INFO__(const stPos pos, const char& t)
+		: _position(pos), _type(t) { }
+} stItemInfo;
 
 typedef enum __E_GAME_STATE__
 {
@@ -44,5 +55,9 @@ typedef enum __E_KEY_STATE__
 
 extern int g_eState;
 extern int g_nLevel;
+extern int g_nType;
+extern int g_nBoost;
+extern bool g_bMake;
 extern bool g_bLoop;
+extern bool g_bSound;
 extern bool g_bKeyState[__E_KEY_MAX__];

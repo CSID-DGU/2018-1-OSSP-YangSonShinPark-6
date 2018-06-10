@@ -46,15 +46,11 @@ void CGraphicsManager::Init()
 
 void CGraphicsManager::Loop()
 {
-	_nFrameTime = SDL_GetTicks() + __D_FRAME_TIMER__;
 	while(g_bLoop)
 	{
-		_deltaTime = CountTime();
 		SDL_FillRect(_ScreenSurface, NULL, 0x000000);
-		_Game.Loop(_deltaTime);
+		_Game.Loop();
 		SDL_UpdateWindowSurface(_Window);
-		SDL_Delay(_deltaTime);
-		_nFrameTime += __D_FRAME_TIMER__;
 	}
 }
 
@@ -65,17 +61,6 @@ void CGraphicsManager::Exit()
 	IMG_Quit();
 	SDL_DestroyWindow(_Window);
 	SDL_Quit();
-}
-
-Uint32 CGraphicsManager::CountTime()
-{
-	Uint32 now;
-
-	now = SDL_GetTicks();
-	if( _nFrameTime <= now )
-		return 0;
-	else
-		return _nFrameTime - now;
 }
 
 

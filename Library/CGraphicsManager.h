@@ -15,12 +15,6 @@ class CGraphicsManager {
 	SDL_Event 		_Event;
 	CGameManager  _Game;
 
-	Uint32 _deltaTime;
-	Uint32 _nFrameTime;
-
-private:
-	Uint32 CountTime();
-
 public:
 	void Init();
 	void Loop();

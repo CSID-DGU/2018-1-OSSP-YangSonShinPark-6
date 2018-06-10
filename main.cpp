@@ -3,6 +3,10 @@
 //!< global variables
 int g_eState;
 int g_nLevel;
+int g_nBoost = 1;
+int g_nType = 0;
+bool g_bMake = false;
+bool g_bSound = true;
 bool g_bLoop = true;
 bool g_bKeyState[__E_KEY_MAX__];
 

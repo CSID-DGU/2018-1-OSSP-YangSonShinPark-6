@@ -26,8 +26,8 @@ private:
 
 public:
 	virtual void Init(SDL_Surface * screen);
-	virtual void Update(int dt);
-	virtual void Render(int dt);
+	virtual void Update(Uint32 dt);
+	virtual void Render(Uint32 dt);
 	virtual void Exit();
 };
 

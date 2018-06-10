@@ -10,9 +10,11 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include <vector>
 #include <string>
+#include <map>
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_thread.h>
