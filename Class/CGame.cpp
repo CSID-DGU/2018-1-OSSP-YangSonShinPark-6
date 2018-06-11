@@ -13,9 +13,7 @@ void CGame::Init(SDL_Surface * screen)
 	for(int i = 0 ; i < 4 ; i++)
 	{
 		_BackGrounds[i].SetImage("Object/BG.png",screen);
-		_BackGroundsPos[i]._x = 0;
-		_BackGroundsPos[i]._y = -120 + (480 * i);
-		_BackGrounds[i].SetPos(_BackGroundsPos[i]._x, _BackGroundsPos[i]._y);
+		_BackGrounds[i].SetPos(0, -120 + (480 * i));
 	}
 
 	ReadPatterns();
@@ -24,7 +22,8 @@ void CGame::Init(SDL_Surface * screen)
 	_UI.Init(_Screen);
 
 	_bKey = false;
-
+	//_Sound.LoadMedia("resource/Sounds/BGM.mp3", "BGM");
+	//_Sound.PlayMusic("BGM");
 }
 
 void CGame::Update(Uint32 dt)
@@ -144,17 +143,6 @@ void CGame::Movement()
 	if( g_bKeyState[__E_RIGHT__]) _Char.SetPos(_Char.GetPos()._x + _Char.GetSpeed() + g_nLevel, _Char.GetPos()._y);
 }
 
-void CGame::BackGround()
-{
-	for(int i = 0 ; i < 4 ; i++)
-	{
-		_BackGroundsPos[i]._y += g_nLevel * 2;
-		_BackGrounds[i].SetPos(_BackGroundsPos[i]._x, _BackGroundsPos[i]._y);
-		if(_BackGroundsPos[i]._y >= 800)
-			_BackGroundsPos[i]._y = -640;
-	}
-}
-
 void CGame::MakeItem(int t)
 {
 	for(int i = 0 ; i < _Patterns[_swap[t]].size(); i++)
@@ -211,6 +199,22 @@ int KeyEvent(void * unused)
 			case SDLK_2:
 				g_bMake = true;
 				g_nType = 1;
+				break;
+			case SDLK_3:
+				g_bMake = true;
+				g_nType = 2;
+				break;
+			case SDLK_4:
+				g_bMake = true;
+				g_nType = 3;
+				break;
+			case SDLK_5:
+				g_bMake = true;
+				g_nType = 4;
+				break;
+			case SDLK_6:
+				g_bMake = true;
+				g_nType = 5;
 				break;
 			}
 		}

@@ -32,10 +32,10 @@ void CUI::Init(SDL_Surface * screen)
 
 void CUI::Update(int dt)
 {
-	_Scores[0] = g_nScore % 10;
-	_Scores[1] = (g_nScore / 10) % 10;
-	_Scores[2] = (g_nScore / 100) % 10;
-	_Scores[3] = (g_nScore / 1000) % 10;
+	//_Scores[0] = g_nScore % 10;
+	//_Scores[1] = (g_nScore / 10) % 10;
+	//_Scores[2] = (g_nScore / 100) % 10;
+	//_Scores[3] = (g_nScore / 1000) % 10;
 }
 
 void CUI::Render(int dt)
@@ -43,8 +43,8 @@ void CUI::Render(int dt)
 	_HPBarBG.Render();
 	_HPBar.Render();
 
-	for(int i = 0 ; i < 4 ; i++)
-		_Score[i][_Scores[i]].Render();
+//	for(int i = 0 ; i < 4 ; i++)
+//		_Score[i][_Scores[i]].Render();
 }
 
 void CUI::Exit()
