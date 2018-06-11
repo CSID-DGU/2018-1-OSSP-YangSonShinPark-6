@@ -17,6 +17,7 @@
 #include <map>
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_thread.h>
 #include <SDL2/SDL.h>
 
@@ -24,6 +25,7 @@
 
 #include "Library/CImageRenderer.h"
 #include "Library/CAnimationRenderer.h"
+#include "Library/CSound.h"
 
 //!< Objects
 #include "Library/CObject.h"

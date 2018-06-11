@@ -54,7 +54,7 @@ void CChar::Init(SDL_Surface * screen)
 
 void CChar::Update(int dt)
 {
-	g_nScore += 1;
+	//g_nScore += 1;
 	if(_Pos._x < -20) _Pos._x = -20;
 	else if(_Pos._x > 435) _Pos._x = 435;
 
@@ -110,13 +110,13 @@ void CChar::CheckState()
 		if( _eState == __E_ITEM_BUG__ )
 		{
 			_nHp += 10;
-			g_nScore += 5;
+			//g_nScore += 5;
 			_HpEff.SetShow(true);
 		}
 		else if( _eState == __E_ITEM_MOUSE__ )
 		{
 			_nHp += 30;
-			g_nScore += 15;
+			//g_nScore += 15;
 			_HpEff.SetShow(true);
 		}
 		else if( _eState == __E_ITEM_BONE__ || _eState == __E_ITEM_THORN__ )

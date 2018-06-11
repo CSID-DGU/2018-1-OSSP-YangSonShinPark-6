@@ -24,7 +24,8 @@ void CGame::Init(SDL_Surface * screen)
 	_UI.Init(_Screen);
 
 	_bKey = false;
-
+	_Sound.LoadMedia("resource/Sounds/BGM.mp3", "BGM");
+	_Sound.PlayMusic("BGM");
 }
 
 void CGame::Update(Uint32 dt)
@@ -209,6 +210,22 @@ int KeyEvent(void * unused)
 				g_nType = 0;
 				break;
 			case SDLK_2:
+				g_bMake = true;
+				g_nType = 1;
+				break;
+			case SDLK_3:
+				g_bMake = true;
+				g_nType = 2;
+				break;
+			case SDLK_4:
+				g_bMake = true;
+				g_nType = 3;
+				break;
+			case SDLK_5:
+				g_bMake = true;
+				g_nType = 0;
+				break;
+			case SDLK_6:
 				g_bMake = true;
 				g_nType = 1;
 				break;
