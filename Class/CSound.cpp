@@ -1,28 +1,26 @@
 /*
- * CMusicRender.cpp
+ * CSound.cpp
  *
- *  Created on: 2018. 6. 10.
+ *  Created on: 2018. 6. 11.
  *      Author: root
  */
 
+#include "../stdafx.h"
 
-#ifndef LIBRARY_CGAMEMANAGER_H_
-#define LIBRARY_CGAMEMANAGER_H_
+void CSound::LoadMedia(const std::string& path, const std::string& name)
+{
+	Mix_Music * msc = Mix_LoadMUS(path.data());
 
-class CMusicRender {
+	if(msc == NULL)
+		std::cout << "Failed to Load : " << path << std::endl;
 
-	//The music that will be played
-	Mix_Music *BGM;
+	_Sounds[name] = msc;
+}
 
-	//The sound effects that will be used
-	Mix_Chunk *LeftHook;
-	Mix_Chunk *PowerUp;
-
-public:
-	bool Init();
-	bool loadMedia();
-	void playMusic(int input);
-	void Exit();
-};
-
-#endif /* LIBRARY_CGAMEMANAGER_H_ */
+void CSound::PlayMusic(const std::string& name)
+{
+	if(name == "BGM")
+		Mix_PlayMusic(_Sounds[name], -1);
+	else
+		Mix_PlayMusic(_Sounds[name], 0);
+}
