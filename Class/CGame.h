@@ -5,7 +5,7 @@ class CGame : public CSceneManager{
 
 	CChar 					_Char;
 	CUI   					_UI;
-	CSound 				_Sound;
+	//CSound 				_Sound;
 	SDL_Thread * 			_Thread;
 
 	std::vector<CItem*> 	_Items;

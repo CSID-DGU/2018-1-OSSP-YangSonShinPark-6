@@ -25,7 +25,7 @@
 
 #include "Library/CImageRenderer.h"
 #include "Library/CAnimationRenderer.h"
-#include "Library/CSound.h"
+//#include "Library/CSound.h"
 
 //!< Objects
 #include "Library/CObject.h"

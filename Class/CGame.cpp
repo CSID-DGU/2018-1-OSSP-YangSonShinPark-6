@@ -24,14 +24,17 @@ void CGame::Init(SDL_Surface * screen)
 	_UI.Init(_Screen);
 
 	_bKey = false;
-	_Sound.LoadMedia("resource/Sounds/BGM.mp3", "BGM");
-	_Sound.PlayMusic("BGM");
+	//_Sound.LoadMedia("resource/Sounds/BGM.mp3", "BGM");
+	//_Sound.PlayMusic("BGM");
 }
 
 void CGame::Update(Uint32 dt)
 {
 	if(!_bKey)
+	{
 		_Thread = SDL_CreateThread(KeyEvent, NULL, NULL);
+		_bKey = true;
+	}
 	//Timer(dt);
 	//BackGround();
 	Movement();
