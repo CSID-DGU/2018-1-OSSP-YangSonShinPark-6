@@ -9,7 +9,8 @@
 #define CLASS_CCHAR_H_
 
 class CChar : public CObject {
-	CImageRenderer _Image;	//mole
+
+	CImageRenderer _Scores[4][10];
 	CAnimationRenderer _Ani;
 	CAnimationRenderer _Boost;
 	CAnimationRenderer _BoostEff;
@@ -18,6 +19,7 @@ class CChar : public CObject {
 
 	int 			 _nSpeed;
 	int 			 _nHp;
+	int  			 _nScore;
 	eItem		 	 _eState;
 
 private:
@@ -34,6 +36,7 @@ public:
 
 	eItem GetState() { return _eState; }
 	int GetSpeed() { return _nSpeed; }
+	int GetHp() { return _nHp; }
 
 };
 

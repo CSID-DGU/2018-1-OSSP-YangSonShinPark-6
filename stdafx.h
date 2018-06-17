@@ -15,6 +15,10 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
@@ -25,7 +29,7 @@
 
 #include "Library/CImageRenderer.h"
 #include "Library/CAnimationRenderer.h"
-//#include "Library/CSound.h"
+#include "Library/CSound.h"
 
 //!< Objects
 #include "Library/CObject.h"

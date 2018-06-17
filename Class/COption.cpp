@@ -21,7 +21,6 @@ void COption::Init(SDL_Surface * screen)
 
 	_Choose_Btn.SetImage("UI/Choose.png",screen);
 	_Choose_Btn.SetPos(150,340);
-
 }
 
 void COption::Update(Uint32 dt)
@@ -66,9 +65,9 @@ void COption::MouseEvent()
 		g_eState = __E_MENU__;
 	if(_MousePosition._x >= 135 && _MousePosition._x < 215 &&
 					_MousePosition._y >= 350 && _MousePosition._y < 430 )
-		g_bSound = true;
+		_Choose_Btn.SetPos(150,330);//g_bSound = true;
 	if(_MousePosition._x >= 285 && _MousePosition._x < 365 &&
 						_MousePosition._y >= 350 && _MousePosition._y < 430 )
-		g_bSound = false; _Choose_Btn.SetPos(300,330);
+		_Choose_Btn.SetPos(300,330);//g_bSound = false;
 
 }

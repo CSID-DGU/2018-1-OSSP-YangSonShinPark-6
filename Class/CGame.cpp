@@ -1,6 +1,8 @@
 #include "../stdafx.h"
 
+stPos rivalPos;
 int KeyEvent(void * unused);
+int Socket(void * unused);
 
 void CGame::Init(SDL_Surface * screen)
 {
@@ -18,22 +20,31 @@ void CGame::Init(SDL_Surface * screen)
 		_BackGrounds[i].SetPos(_BackGroundsPos[i]._x, _BackGroundsPos[i]._y);
 	}
 
+	//_Sound.LoadMedia("resource/Sounds/BGM.wav", "BGM");
+
 	ReadPatterns();
 
 	_Char.Init(_Screen);
 	_UI.Init(_Screen);
 
-	_bKey = false;
-	//_Sound.LoadMedia("resource/Sounds/BGM.mp3", "BGM");
-	//_Sound.PlayMusic("BGM");
+	_bInit = false;
 }
 
 void CGame::Update(Uint32 dt)
 {
-	if(!_bKey)
+	if(!_bInit)
 	{
+		_bInit = true;
 		_Thread = SDL_CreateThread(KeyEvent, NULL, NULL);
-		_bKey = true;
+
+		if(g_bMulti)
+		{
+			rivalPos._x = 0;
+			rivalPos._y = 0;
+			_SocketThread = SDL_CreateThread(Socket, NULL, NULL);
+		}
+		//if(g_bSound)
+		//	_Sound.PlayMusic("BGM");
 	}
 	//Timer(dt);
 	//BackGround();
@@ -41,6 +52,7 @@ void CGame::Update(Uint32 dt)
 	CheatCodes();
 
 	_UI.Update(dt);
+	_UI.SetHp(_Char.GetHp());
 	_Char.Update(dt);
 
 	for(int i = 0 ; i < _Items.size() ; i++)
@@ -226,11 +238,11 @@ int KeyEvent(void * unused)
 				break;
 			case SDLK_5:
 				g_bMake = true;
-				g_nType = 0;
+				g_nType = 4;
 				break;
 			case SDLK_6:
 				g_bMake = true;
-				g_nType = 1;
+				g_nType = 5;
 				break;
 			}
 		}
@@ -256,3 +268,100 @@ int KeyEvent(void * unused)
 
 	return 0;
 }
+
+void waiting(bool **isConnect);
+void waitClient(bool **isConnect);
+int Socket(void * unused)
+{
+	client = socket(AF_INET, SOCK_STREAM, 0);
+	int yes = 1;
+	if(setsockopt(client, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes)) == -1) return -1;
+	if (client < 0)	return -1;
+
+	server_addr.sin_family = AF_INET;
+	server_addr.sin_port = htons(portNum);
+
+	bool isServer = true;
+	int count = 0;
+	inet_pton(AF_INET, ip, &server_addr.sin_addr);
+
+	bool isConnect = false;
+	bool* cntPointer = &isConnect;
+	while (true)
+	{
+		if (connect(client, (struct sockaddr *)&server_addr, sizeof(server_addr)) != -1)
+		{
+			isServer = false;
+			isConnect = true;
+			waiting(&cntPointer);
+		}
+		count++;
+		if (count == 3) break;
+	}
+
+	if (isServer)
+	{
+		inet_pton(AF_INET, "0.0.0.0", &server_addr.sin_addr); // 초기값인 0.0.0.0으로 초기화
+
+		while ((bind(client, (struct sockaddr*)&server_addr, sizeof(server_addr))) < 0)
+		{
+			;
+		}
+		server_addr.sin_addr.s_addr = htons(INADDR_ANY);
+
+		size = sizeof(server_addr);
+		std::cout << "=> Looking for clients..." << std::endl;
+		server = -1;
+
+		listen(client, 1);
+
+		waitClient(&cntPointer);
+		buffer_int[0] = (unsigned int)time(NULL);
+		send(server, buffer_int, bufsize, 0);
+		srand(buffer_int[0]);
+	}
+	else
+	{
+		inet_pton(AF_INET, ip, &server_addr.sin_addr);
+
+		int iResult;
+		struct timeval tv;
+		bool timeout = false;
+		fd_set rfds;
+		FD_ZERO(&rfds);
+		FD_SET(client, &rfds);
+
+		tv.tv_sec = 5;
+		tv.tv_usec = 0;
+
+		iResult = select(client + 1, &rfds, (fd_set *)0, (fd_set *)0, &tv);
+		if (iResult > 0)
+		{
+			recv(client, buffer_int, bufsize, 0);
+			rivalPos._x = buffer_int / 1000;
+			rivalPos._y = buffer_int % 1000;
+			timeout = true;
+		}
+		if (!timeout) return -1;
+
+		srand(buffer_int[0]);
+	}
+	return 0;
+}
+
+void waiting(bool **isConnect)
+{
+	int count = 0;
+	while (!(**isConnect))
+	{
+		SDL_Delay(500);
+		count = (count + 1) % 4;
+	}
+}
+
+void waitClient(bool **isConnect)
+{
+	 server = accept(client, (struct sockaddr *)&server_addr, &size);
+	 **isConnect = true;
+}
+

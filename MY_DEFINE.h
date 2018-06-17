@@ -57,6 +57,7 @@ extern int g_eState;
 extern int g_nLevel;
 extern int g_nType;
 extern int g_nBoost;
+extern bool g_bMulti;
 extern bool g_bMake;
 extern bool g_bLoop;
 extern bool g_bSound;

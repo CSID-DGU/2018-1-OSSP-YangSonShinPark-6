@@ -10,16 +10,16 @@
 
 class CUI : public CObject{
 
-	CImageRenderer _HPBar;
 	CImageRenderer _HPBarBG;
-	std::vector<CImageRenderer*> _Score;
-	int _Scores[4];
-
+	CImageRenderer _HPbars[9];
+	int _Hp;
 public:
 	virtual void Init(SDL_Surface * screen);
 	virtual void Update(int dt);
 	virtual void Render(int dt);
 	virtual void Exit();
+
+	void SetHp(int h) { _Hp = h; }
 };
 
 #endif /* CLASS_CUI_H_ */

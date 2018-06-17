@@ -30,11 +30,11 @@ void CGraphicsManager::Init()
 		}
 		else
 		{
-			if( SDL_Init(SDL_INIT_AUDIO) < 0)
-				g_bSound = false;
+			//if( SDL_Init(SDL_INIT_AUDIO) < 0)
+			//	g_bSound = false;
 
-			if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0 )
-				g_bSound = false;
+			//if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0 )
+			//	g_bSound = false;
 
 			if( !(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) )
 				g_bLoop = false;

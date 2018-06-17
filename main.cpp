@@ -5,6 +5,7 @@ int g_eState;
 int g_nLevel;
 int g_nBoost = 1;
 int g_nType = 0;
+bool g_bMulti = false;
 bool g_bMake = false;
 bool g_bSound = true;
 bool g_bLoop = true;

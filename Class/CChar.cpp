@@ -45,18 +45,32 @@ void CChar::Init(SDL_Surface * screen)
 	_LossEff.SetLoop(false);
 	_LossEff.SetShow(false);
 
+	for(int i = 0 ; i < 4 ; i++)
+		for(int j = 0 ; j < 10 ; j++)
+		{
+			std::ostringstream stream;
+			stream << j;
+			std::string imgPath = "Number/" + stream.str() + ".png";
+			_Scores[i][j].SetImage(imgPath, screen);
+			_Scores[i][j].SetPos(440 - (i*30), 740);
+		}
+
 	_Pos._x = 200;
 	_Pos._y = 650;
 	_nSpeed = 5;
-	_nHp = 10;
+	_nHp = 8;
+	_nScore = 0;
 	_eState = __E_ITEM_MAX__;
 }
 
 void CChar::Update(int dt)
 {
-	//g_nScore += 1;
+	_nScore += 1;
 	if(_Pos._x < -20) _Pos._x = -20;
 	else if(_Pos._x > 435) _Pos._x = 435;
+
+	//!< divine mode
+	if(_nHp <= 0) g_eState = __E_MENU__;
 
 	_Ani.SetPos(_Pos);
 	if(_Boost.GetShow())
@@ -96,6 +110,12 @@ void CChar::Render(int dt)
 
 	if(_HpEff.GetShow())
 		_HpEff.Render(dt);
+
+	int cur = _nScore%10;
+	_Scores[0][cur].Render(); cur = (_nScore/10)%10;
+	_Scores[1][cur].Render(); cur = (_nScore/100)%10;
+	_Scores[2][cur].Render(); cur = (_nScore/1000)%10;
+	_Scores[3][cur].Render();
 }
 
 void CChar::Exit()
@@ -109,30 +129,35 @@ void CChar::CheckState()
 	{
 		if( _eState == __E_ITEM_BUG__ )
 		{
-			_nHp += 10;
-			//g_nScore += 5;
+			_nHp += 1;
+			if( _nHp > 8 ) _nHp = 8;
+			_nScore += 5;
 			_HpEff.SetShow(true);
 		}
 		else if( _eState == __E_ITEM_MOUSE__ )
 		{
-			_nHp += 30;
-			//g_nScore += 15;
+			_nHp += 2;
+			if( _nHp > 8 ) _nHp = 8;
+			_nScore += 15;
 			_HpEff.SetShow(true);
 		}
-		else if( _eState == __E_ITEM_BONE__ || _eState == __E_ITEM_THORN__ )
+		if(!_LossEff.GetShow())
 		{
-			_nHp -= 10;
-			_LossEff.SetShow(true);
-		}
-		else if( _eState == __E_ITEM_STICK__ )
-		{
-			_nHp -= 5;
-			_LossEff.SetShow(true);
-		}
-		else if( _eState == __E_ITEM_ROCK__ || _eState == __E_ITEM_STONE__ )
-		{
-			_nHp -= 20;
-			_LossEff.SetShow(true);
+			if( _eState == __E_ITEM_BONE__ || _eState == __E_ITEM_THORN__ )
+			{
+				_nHp -= 1;
+				_LossEff.SetShow(true);
+			}
+			else if( _eState == __E_ITEM_STICK__ )
+			{
+				_nHp -= 2;
+				_LossEff.SetShow(true);
+			}
+			else if( _eState == __E_ITEM_ROCK__ || _eState == __E_ITEM_STONE__ )
+			{
+				_nHp -= 3;
+				_LossEff.SetShow(true);
+			}
 		}
 		_eState = __E_ITEM_MAX__;
 	}
@@ -143,6 +168,7 @@ void CChar::SetState(eItem st)
 	_eState = st;
 	if(st == __E_ITEM_SUPER__)
 	{
+		_nScore += 20;
 		_Boost.SetShow(true);
 		_BoostEff.SetShow(true);
 	}
