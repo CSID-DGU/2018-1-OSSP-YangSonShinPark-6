@@ -338,8 +338,8 @@ int Socket(void * unused)
 		if (iResult > 0)
 		{
 			recv(client, buffer_int, bufsize, 0);
-			rivalPos._x = buffer_int / 1000;
-			rivalPos._y = buffer_int % 1000;
+			rivalPos._x = buffer_int[1];
+			rivalPos._y = buffer_int[2];
 			timeout = true;
 		}
 		if (!timeout) return -1;
